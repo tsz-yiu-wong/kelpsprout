@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelpsprout Studio</title>
+    <style>
+        :root {
+            --bg-color: #030305;
+            /* Deep black/navy */
+            --text-gradient-start: #FFF7E8;
+            --text-gradient-end: #B0C4DE;
+            --spotlight-color: rgba(176, 196, 222, 0.08);
+            --accent-blue: #2a3b55;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            overflow: hidden;
+            /* Prevent scroll for the immersive effect */
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: default;
+            position: relative;
+        }
+
+        /* Ambient Background Noise/Texture (Optional, adding subtle grain for texture) */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Spotlight Effect */
+        .spotlight-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    var(--spotlight-color),
+                    transparent 40%);
+            transition: opacity 1s ease;
+        }
+
+        /* Content Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        /* Logo/Brand Name */
+        h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+
+            /* Gradient Text */
+            background: linear-gradient(135deg, var(--text-gradient-start) 20%, var(--text-gradient-end) 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            /* Subtle Drop Shadow for depth */
+            filter: drop-shadow(0 0 30px rgba(176, 196, 222, 0.2));
+        }
+
+        /* Chinese Name */
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 4rem;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+
+        /* Description/Tagline */
+        .tagline {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 600px;
+            margin: 0 auto 6rem;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Contact Button/Link */
+        .contact-link {
+            display: inline-block;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            padding: 12px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 40px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Spotlight Layer -->
+    <div class="spotlight-overlay"></div>
+
+    <div class="container">
+        <!-- Floating shapes for extra "universe" feel (Optional, keeping it minimal) -->
+
+        <h1>Kelpsprout Studio</h1>
+        <h2>海带苗信息科技工作室</h2>
+
+        <div class="tagline">
+            Exploring the depths of digital innovation.<br>
+            Crafting elegance in the vast ocean of code.
+        </div>
+
+        <a href="mailto:hello@kelpsprout.com" class="contact-link">hello@kelpsprout.com</a>
+    </div>
+
+    <footer>
+        &copy; 2026 Kelpsprout Studio. All Rights Reserved.
+    </footer>
+
+    <script>
+        // Spotlight Logic
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX + 'px';
+            const y = e.clientY + 'px';
+
+            document.body.style.setProperty('--mouse-x', x);
+            document.body.style.setProperty('--mouse-y', y);
+        });
+
+        // Optional: Smooth tilt effect on text for 3D feel
+        const container = document.querySelector('.container');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+            container.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+    </script>
+</body>
+
+</html>
