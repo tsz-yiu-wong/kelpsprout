@@ -1,0 +1,21 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- Gradient matching the text: Bottom-Left (FFF7E8) to Top-Right (B0C4DE) -->
+        <linearGradient id="kelpGrad" x1="10" y1="54" x2="54" y2="10" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFF7E8"/>
+            <stop offset="100%" stop-color="#B0C4DE"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- Left Sprout: Smaller, dancing to the left -->
+    <path d="M20 56 C 14 48, 26 36, 16 22" 
+          stroke="url(#kelpGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+          
+    <!-- Center Sprout: The main character, tall and elegant -->
+    <path d="M32 60 C 22 45, 42 25, 32 8" 
+          stroke="url(#kelpGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          
+    <!-- Right Sprout: Balancing the composition -->
+    <path d="M44 56 C 50 48, 38 36, 48 22" 
+          stroke="url(#kelpGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+</svg>

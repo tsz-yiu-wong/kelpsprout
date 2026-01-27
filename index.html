@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelpsprout Studio</title>
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
     <style>
         :root {
             --bg-color: #030305;
@@ -138,10 +139,22 @@
         /* Footer */
         footer {
             position: absolute;
-            bottom: 40px;
+            bottom: 20px;
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.2);
             z-index: 10;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* Animations */
@@ -189,7 +202,8 @@
     </div>
 
     <footer>
-        &copy; 2026 Kelpsprout Studio. All Rights Reserved.
+        <p>&copy; 2026 Kelpsprout Studio. All Rights Reserved.</p>
+        <p><a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2026001236号-1</a></p>
     </footer>
 
     <script>
