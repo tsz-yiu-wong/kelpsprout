@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户协议与会员条款 - Kelpsprout Studio</title>
+    <meta name="description" content="物迹用户协议与会员条款 - 了解我们的服务规则及会员权益。">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <style>
+        :root {
+            --bg-color: #030305;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-tertary: rgba(255, 255, 255, 0.4);
+            --accent-gradient: linear-gradient(135deg, #FFF7E8 20%, #B0C4DE 80%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --section-spacing: 60px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient Texture */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .effective-date {
+            font-size: 0.9rem;
+            color: var(--text-tertary);
+        }
+
+        .intro {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            padding: 24px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .part-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: var(--section-spacing);
+            margin-bottom: 32px;
+            color: var(--text-primary);
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .part-header:first-of-type {
+            margin-top: 0;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            color: var(--text-primary);
+        }
+
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 1.25rem;
+            background: var(--accent-gradient);
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+
+        .content {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .content p {
+            margin-bottom: 12px;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-tertary);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>用户协议与会员条款</h1>
+            <p class="effective-date">发布及生效日期：2026年01月01日</p>
+        </header>
+
+        <div class="intro">
+            欢迎您使用“物迹”软件及相关服务！在您使用本服务前，请认真阅读并充分理解本协议。当您勾选“同意”或实际开始使用本服务时，即视为您已阅读并同意本协议的所有内容。
+        </div>
+
+        <!-- 第一部分：用户服务协议 -->
+        <div class="part-header">第一部分：用户基础服务协议</div>
+
+        <section>
+            <h2>一、服务内容</h2>
+            <div class="content">
+                <p>1.1 物迹提供物品录入、有效期管理、库存提醒等数字化物品资产管理服务。</p>
+                <p>1.2 本服务包括但不限于通过移动客户端、小程序等形式提供的各项功能。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>二、账号管理</h2>
+            <div class="content">
+                <p>2.1 您需要通过手机号码进行注册/登录。您应对账号下的所有行为负责。</p>
+                <p>2.2 为了保障数据安全，如果您利用虚假信息注册、滥用账号或从事违反法律法规的行为，我们有权限制或终止为您提供服务。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>三、用户行为规范</h2>
+            <div class="content">
+                <p>3.1 您承诺遵守法律法规，不得利用本服务存储、传播任何违法、侵权或违背公序良俗的信息。</p>
+                <p>3.2 您不得对本软件进行反向工程、反向编译或以其他方式试图提取源代码。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>四、知识产权</h2>
+            <div class="content">
+                <p>4.1 物迹的界面设计、标志、代码、技术方案等知识产权均归开发者所有。</p>
+                <p>4.2 您在使用过程中录入的个人数据，其所有权归您所有，物迹仅根据隐私政策为您提供存储与管理服务。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>五、服务变更与中断</h2>
+            <div class="content">
+                <p>5.1 我们将不断优化服务，可能会根据业务需要对功能进行更新或调整。</p>
+                <p>5.2 鉴于互联网服务的特殊性，如因系统维护、网络故障或不可抗力导致服务中断，我们将尽力修复，但不承担由此产生的损失。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>六、协议终止</h2>
+            <div class="content">
+                <p>6.1 您可以随时通过注销账号的方式终止使用本服务。注销后，我们将按照法律规定及《隐私政策》处理您的个人信息。</p>
+                <p>6.2 如果您严重违反本协议，我们保留收回账号及终止服务的权利。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>七、法律适用与争议解决</h2>
+            <div class="content">
+                <p>7.1 本协议的签订、生效、履行、解释及争议解决均适用中华人民共和国法律。</p>
+                <p>7.2 如双方发生争议，应友好协商解决；协商不成的，应向开发者所在地有管辖权的人民法院提起诉讼。</p>
+            </div>
+        </section>
+
+        <!-- 第二部分：会员服务协议 -->
+        <div class="part-header" style="margin-top: 80px;">第二部分：会员及付费服务协议</div>
+
+        <div class="intro" style="margin-bottom: 40px; font-size: 1rem;">
+            本部分协议为您在开通会员服务时的补充协议。当您开通或使用会员服务时，即视为您已同意本部分协议。
+        </div>
+
+        <section>
+            <h2>一、会员服务内容</h2>
+            <div class="content">
+                <p>1.1 物迹会员服务包含但不限于：无限制物品数量、无限制扫描入库、增量的AI识别额度、误删找回权益、专属应用图标等特权。</p>
+                <p>1.2 具体会员权益以您开通服务时页面展示的权益对比说明为准。开发者有权根据业务发展对权益内容进行调整或优化。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>二、收费与订阅</h2>
+            <div class="content">
+                <p>2.1 本服务为收费服务，您可以选择按月订阅、按年订阅或终身买断。具体价格以支付页面显示为准。</p>
+                <p>2.2 支付：用户确认购买并付款后，费用将计入您的 iTunes 账户。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>三、自动续费规则</h2>
+            <div class="content">
+                <p>3.1 适用范围：本规则仅适用于选择了连续包月或连续包年等自动续费套餐的用户。</p>
+                <p>3.2 自动扣费：苹果公司将在会员到期前 24 小时内自动从您的 iTunes 账户扣费。扣费成功后，会员有效期将顺延一个订阅周期。</p>
+                <p>3.3 扣费失败：如因账户余额不足导致扣费失败，您将无法继续享受会员服务，直至扣费成功。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>四、取消续订与退款</h2>
+            <div class="content">
+                <p>4.1 取消路径：如需取消续订，请在当前订阅周期到期前至少 24 小时操作。操作路径：iOS“设置” -- “iTunes Store 与 App Store” -- “Apple ID” -- “查看
+                    Apple ID” -- “订阅”中找到物迹并取消。</p>
+                <p>4.2 不退款说明：除法律法规另有规定外，已支付的会员费用不予退还。取消自动续费仅对下一个周期生效。</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>五、其他约定</h2>
+            <div class="content">
+                <p>5.1 物迹有权根据业务需要调整会员服务的价格，并将在调整前通过站内公示通知您。</p>
+                <p>5.2 终身会员服务的有效期至本软件终止运营之日止。</p>
+                <p>5.3 本协议作为《用户服务协议》的补充，与其具有同等法律效力。</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>海带苗信息科技工作室</p>
+            <p>联系邮箱：<a href="mailto:hello@kelpsprout.com">hello@kelpsprout.com</a></p>
+            <p style="margin-top: 20px;">&copy; 2026 Kelpsprout Studio. All Rights Reserved.</p>
+            <p><a href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank">粤公网安备44030002010447号</a>
+                | <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2026001236号-1</a>
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>
