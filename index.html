@@ -136,6 +136,75 @@
             color: #fff;
         }
 
+        /* Legal Section */
+        .legal-section {
+            margin-top: 3.5rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 0.4s forwards;
+        }
+
+        .legal-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.25);
+            margin-bottom: 1rem;
+        }
+
+        .legal-cards {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .legal-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.82rem;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .legal-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.18);
+            color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .legal-card-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, rgba(255, 247, 232, 0.12), rgba(176, 196, 222, 0.12));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .legal-card-icon svg {
+            width: 10px;
+            height: 10px;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .legal-card:hover .legal-card-icon svg {
+            opacity: 0.85;
+        }
+
         /* Footer */
         footer {
             position: absolute;
@@ -199,6 +268,33 @@
         </div>
 
         <a href="mailto:hello@kelpsprout.com" class="contact-link">hello@kelpsprout.com</a>
+
+        <div class="legal-section">
+            <div class="legal-label">物品日记 · APP</div>
+            <div class="legal-cards">
+                <a href="wuji-eula.html" class="legal-card" id="link-eula">
+                    <span class="legal-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg>
+                    </span>
+                    用户协议
+                </a>
+                <a href="wuji-privacy-policy.html" class="legal-card" id="link-privacy">
+                    <span class="legal-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </span>
+                    隐私政策
+                </a>
+            </div>
+        </div>
     </div>
 
     <footer>
