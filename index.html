@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelpsprout Studio</title>
+    <title>海带苗信息科技</title>
     <link rel="icon" href="logo.svg" type="image/svg+xml">
     <style>
         :root {
             --bg-color: #030305;
-            /* Deep black/navy */
             --text-gradient-start: #FFF7E8;
             --text-gradient-end: #B0C4DE;
             --spotlight-color: rgba(176, 196, 222, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.06);
             --accent-blue: #2a3b55;
         }
 
@@ -25,23 +26,24 @@
         body {
             background-color: var(--bg-color);
             color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            overflow: hidden;
-            /* Prevent scroll for the immersive effect */
-            height: 100vh;
+            font-family: "PingFang SC", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
             width: 100vw;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            padding: 80px 20px;
             cursor: default;
             position: relative;
+            overflow-x: hidden;
+            /* 允许垂直滚动以展示更多内容 */
+            overflow-y: auto;
         }
 
-        /* Ambient Background Noise/Texture (Optional, adding subtle grain for texture) */
+        /* 纹理背景 */
         body::after {
             content: "";
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -51,9 +53,9 @@
             z-index: 1;
         }
 
-        /* Spotlight Effect */
+        /* 聚光灯效果 */
         .spotlight-overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -63,157 +65,165 @@
             background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
                     var(--spotlight-color),
                     transparent 40%);
-            transition: opacity 1s ease;
         }
 
-        /* Content Container */
         .container {
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 0 20px;
+            max-width: 800px;
+            width: 100%;
             opacity: 0;
-            animation: fadeIn 1.5s ease-out forwards;
+            animation: fadeIn 1.2s ease-out forwards;
         }
 
-        /* Logo/Brand Name */
-        h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.5rem;
+        /* 品牌头图 */
+        .brand-header {
+            margin-bottom: 3rem;
+        }
 
-            /* Gradient Text */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
             background: linear-gradient(135deg, var(--text-gradient-start) 20%, var(--text-gradient-end) 80%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-
-            /* Subtle Drop Shadow for depth */
-            filter: drop-shadow(0 0 30px rgba(176, 196, 222, 0.2));
+            filter: drop-shadow(0 0 30px rgba(176, 196, 222, 0.15));
         }
 
-        /* Chinese Name */
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 4rem;
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-        }
-
-        /* Description/Tagline */
-        .tagline {
+        .subtitle {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.5);
-            max-width: 600px;
-            margin: 0 auto 6rem;
-            line-height: 1.6;
-            font-weight: 300;
+            font-weight: normal;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
         }
 
-        /* Contact Button/Link */
-        .contact-link {
-            display: inline-block;
+        .en-title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            background: linear-gradient(135deg, var(--text-gradient-start) 20%, var(--text-gradient-end) 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: -0.5rem 0 2rem;
+            font-family: "SF Pro Display", -apple-system, sans-serif;
+            filter: drop-shadow(0 0 30px rgba(176, 196, 222, 0.15));
+        }
+
+        /* 业务简介 */
+        .intro-text {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-weight: 300;
+            margin: 0 auto 4rem;
+            text-align: justify;
+            text-justify: inter-ideograph;
+            padding: 0 10px;
+        }
+
+        .intro-text strong {
+            font-weight: 600;
+        }
+
+        /* 模块样式 */
+        .section-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: "";
+            height: 1px;
+            width: 30px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 卡片容器 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 4rem;
+        }
+
+        .glass-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
             text-decoration: none;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            padding: 12px 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            text-align: left;
         }
 
-        .contact-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
             color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
         }
 
-        /* Legal Section */
-        .legal-section {
-            margin-top: 3.5rem;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-out 0.4s forwards;
-        }
-
-        .legal-label {
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.25);
-            margin-bottom: 1rem;
-        }
-
-        .legal-cards {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .legal-card {
+        .card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.55);
-            font-size: 0.82rem;
-            padding: 10px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 247, 232, 0.08), rgba(176, 196, 222, 0.08));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
         }
 
-        .legal-card:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.18);
-            color: rgba(255, 255, 255, 0.9);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
-        }
-
-        .legal-card-icon {
+        .card-icon svg {
             width: 18px;
             height: 18px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            background: linear-gradient(135deg, rgba(255, 247, 232, 0.12), rgba(176, 196, 222, 0.12));
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            opacity: 0.6;
+            stroke: currentColor;
         }
 
-        .legal-card-icon svg {
-            width: 10px;
-            height: 10px;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
+        .card-content h3 {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 2px;
+            font-weight: 400;
         }
 
-        .legal-card:hover .legal-card-icon svg {
-            opacity: 0.85;
+        /* 专门针对地址的长卡片 */
+        .full-width-card {
+            grid-column: 1 / -1;
         }
 
-        /* Footer */
+        /* 页脚 */
         footer {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.2);
-            z-index: 10;
+            margin-top: auto;
+            padding: 40px 0 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.8;
+            z-index: 10;
         }
 
         footer a {
@@ -226,7 +236,6 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -241,84 +250,134 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
-            h2 {
+            .subtitle {
                 font-size: 1rem;
+                letter-spacing: 0.2em;
+            }
+
+            body {
+                padding: 60px 15px;
             }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Spotlight Layer -->
     <div class="spotlight-overlay"></div>
 
-    <div class="container">
-        <!-- Floating shapes for extra "universe" feel (Optional, keeping it minimal) -->
+    <div class="container" id="main-content">
+        <header class="brand-header">
+            <h1>海带苗信息科技工作室</h1>
+            <h1 class="en-title">Kelpsprout Studio</h1>
+            <div class="subtitle">数智化升级 · AI赋能 · 软件开发 · 技术咨询</div>
+        </header>
 
-        <h1>Kelpsprout Studio</h1>
-        <h2>海带苗信息科技工作室</h2>
+        <section class="intro-section">
+            <div class="intro-text">
+                简介：致力于提供前沿的<strong>数智化升级</strong>与<strong>AI赋能</strong>解决方案。我们通过精湛的<strong>软件开发</strong>技术与深度的<strong>技术咨询</strong>服务，协助企业在数字化浪潮中重塑核心竞争力，实现数智化转型与业务增长。
+            </div>
+        </section>
 
-        <div class="tagline">
-            Exploring the depths of digital innovation.<br>
-            Crafting elegance in the vast ocean of code.
+        <!-- 旗下产品卡片组 -->
+        <div class="section-label">旗下产品：物品日记 APP</div>
+        <div class="card-grid">
+            <a href="wuji-eula.html" class="glass-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h3>法律文本</h3>
+                    <div>用户协议</div>
+                </div>
+            </a>
+            <a href="wuji-privacy-policy.html" class="glass-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h3>法律文本</h3>
+                    <div>隐私政策</div>
+                </div>
+            </a>
         </div>
 
-        <a href="mailto:hello@kelpsprout.com" class="contact-link">hello@kelpsprout.com</a>
-
-        <div class="legal-section">
-            <div class="legal-label">物品日记 · APP</div>
-            <div class="legal-cards">
-                <a href="wuji-eula.html" class="legal-card" id="link-eula">
-                    <span class="legal-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                            <polyline points="14 2 14 8 20 8" />
-                            <line x1="16" y1="13" x2="8" y2="13" />
-                            <line x1="16" y1="17" x2="8" y2="17" />
-                        </svg>
-                    </span>
-                    用户协议
-                </a>
-                <a href="wuji-privacy-policy.html" class="legal-card" id="link-privacy">
-                    <span class="legal-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
-                    </span>
-                    隐私政策
-                </a>
+        <!-- 联系方式卡片组 -->
+        <div class="section-label">联系我们</div>
+        <div class="card-grid">
+            <a href="tel:15347014471" class="glass-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h3>联系电话</h3>
+                    <div>15347014471</div>
+                </div>
+            </a>
+            <a href="mailto:hello@kelpsprout.com" class="glass-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h3>电子邮箱</h3>
+                    <div>hello@kelpsprout.com</div>
+                </div>
+            </a>
+            <div class="glass-card full-width-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                </div>
+                <div class="card-content">
+                    <h3>办公地址</h3>
+                    <div>深圳市福田区沙头街道新洲社区新洲九街273号星河雅居B座2406</div>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Kelpsprout Studio. All Rights Reserved.</p>
-        <p><!--<a href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank">粤公网安备44030002010447号</a>
-        | --> <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2026000732号-2</a></p>
+        <p>&copy; 2026 海带苗信息科技工作室</p>
+        <p><a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2026000732号-2</a></p>
     </footer>
 
     <script>
-        // Spotlight Logic
+        // 聚光灯逻辑
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX + 'px';
             const y = e.clientY + 'px';
-
             document.body.style.setProperty('--mouse-x', x);
             document.body.style.setProperty('--mouse-y', y);
         });
 
-        // Optional: Smooth tilt effect on text for 3D feel
-        const container = document.querySelector('.container');
+        // 容器微动视差效果
+        const content = document.getElementById('main-content');
         document.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-            container.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 80;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 80;
+            content.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
         });
     </script>
 </body>
